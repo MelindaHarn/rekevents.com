@@ -1,0 +1,10 @@
+
+image: abesiyo/s3
+
+pipelines:
+  branches:
+    master:
+      - step:
+          script:
+            - s3 --region "us-east-2" rm s3://rekevents.com
+            - s3 --region "us-east-2" sync . s3://rekevents.com
