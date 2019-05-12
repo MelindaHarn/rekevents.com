@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Professor Account</title>
+        <!-- All CSS -->
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+        <link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/css/main.css">
+        <link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/css/professor_account.css">
+        <!-- Internal CSS -->
+        <style type="text/css"> 
+                    
+        </style>
+    </head>
+
+    <body>
+        <div class="content">
+            <!-- Nav bar -->
+            <nav class="navbar navbar-expand-lg">
+                <a href="#" class="navbar-brand"><img src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/images/rekevents_logo.svg" alt="rekevents logo"></a>
+                <div class="menu">
+                    <a href="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/wildrydes/index.html"><input type="button" name="logout" value="logout"></a>
+                </div>
+            </nav>
+            <!-- Tab Section -->
+            <section class="tab-section">
+                <!-- Tab side navbar -->
+                <div class="side-nav">
+                    <div class="user-name">
+                        <span><img src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/images/user.svg" alt="user symbol"></span>
+                        <h5>Professor's Name</h5>
+                    </div>
+                    <ul class="tab-nav">
+                        <li>
+                            <button class="tab-item active" onclick="openTab(event, 'overview')">
+                                <img class="icons" src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/images/overview.svg" alt="">
+                                <p>Overview</p>
+                            </button>
+                        </li>
+                        <li class="dropdown" id="dropdown">
+                            <button id="dropdown-btn" class="tab-item dropdown-btn" onclick="openDropdown(); openTab(event, 'classes')">
+                                <img class="icons" src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/images/class.svg" alt="">
+                                <p>Classes</p><i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-container" id="dropdown-content">
+                                <a class="class-link" href="#" onclick="openClassModal('classId')">Class 1</a>
+                            </div>
+                        </li>
+                        <li>
+                            <button class="tab-item" onclick="openTab(event, 'account')">
+                                <img class="icons" src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/images/account-info.svg" alt="">
+                                <p>Account Info</p>
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="bottom-logo">
+                        <img src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/images/bottom-logo.svg" alt="">
+                    </div>
+                </div>
+                <!-- Tab Content -->
+                <div class="tab-content-container">
+
+                    <!-- Content -->
+                    <div class="tab-content" id="overview">
+                        <!-- Heading -->
+                        <div class="tab-item-heading">
+                            <h4>Overview</h4>
+                        </div>
+                        <div class="tab-item-content">
+                            <div class="course-grid-container">
+                                <div class="course-grid-item">
+                                    <div class="class-number">
+                                        <a href="#">
+                                            <h5>IT 3333</h5>
+                                        </a>
+                                    </div>
+                                    <div class="class-info">
+                                        <p class="info-label">Number of Students</p>
+                                        <p class="info">20</p>
+                                        <p class="info-label">Last Report Run</p>
+                                        <p class="info">01/01/2019</p>
+                                        <p class="info-label">Number of Absences</p>
+                                        <p class="info">2</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="classes" style="display:none">
+                        <!-- Heading -->
+                        <div class="tab-item-heading">
+                            <h4>Classes</h4>
+                        </div>
+                        <!-- Content -->
+                        <div class="tab-item-content">
+                            <!-- Grid container -->
+                            <div class="course-tile-grid">
+                                <!-- Grid child -->
+                                <a href="#" onclick="openClassModal('classId')">
+                                    <div class="course-tile-item">
+                                        <div class="course-image-holder">
+                                            <img src="https://source.unsplash.com/collection/590961" alt="" class="course-image">
+                                        </div>
+                                        <div class="course-info">
+                                            <table class="class-tile-table">
+                                                <tr>
+                                                    <td colspan="4">
+                                                        IT-3333 Network Comm
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Start:</td>
+                                                    <td>01/14/2019</td>
+                                                    <td>End:</td>
+                                                    <td>01/14/2019</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- This is for individual class page within the tab section "Classes" -->
+                        <div class="w3-modal" id="classId">
+                            <div class="w3-modal-content w3-animate-left">
+                                <span onclick="document.getElementById('classId').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                                <div class="w3-container">
+                                    <div class="classinfo">
+                                        <h5>IT-3333 Network Communication</h5>
+                                        <div class="date-hour">
+                                            <p><label>Date:</label>&nbsp;TR</p>
+                                            <p><label>Hour:</label>&nbsp;4 - 5:15 PM</p>
+                                        </div>
+                                    </div>
+                                    <div class="run-btn">
+									<input type="submit" class="button" onclick="window.open('https://rekevents.com/rekattendance/html/attendance_check-in_application.html')"; value="Run Attendance" />
+                                        <!--
+										<input type="submit" class="button" value="Run Attendance">
+										-->
+                                    </div>
+                                </div>
+                                <div class="w3-container">
+                                    <div class="grid-container">
+                                        <div class="grid-item">
+                                            <table class="student-list">
+                                                <tr class="list-heading">
+                                                    <th colspan="2">Class Roster</th>
+                                                </tr>
+                                                <tr class="list-subheading">
+                                                    <td>Student Name</td>
+                                                    <td>Student ID</td>
+                                                </tr>
+                                                <tr class="student">
+                                                    <td class="student-name">Toan Nguyen</td>
+                                                    <td class="student-id">900000000</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="grid-item">
+                                            <!-- <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;mode=WEEK&amp;height=600&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=6i7u4rshcpa9r7rh19kn6c6o4c%40group.calendar.google.com&amp;color=%238D6F47&amp;ctz=America%2FNew_York"
+                                                style="border:solid 1px #777" width="100%" height="450px" frameborder="0"
+                                                scrolling="no"></iframe> -->
+                                            <table class="report-table">
+                                                <tr  class="list-heading">
+                                                    <th colspan="3">Class Attendance Reports</th>
+                                                </tr>
+                                                <tr class="list-subheading">
+                                                    <td align="left" width="30%">Date</td>
+                                                    <td align="left">Time</td>
+                                                    <td align="right">Report Link</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>01/14/2019</td> <!--Dummy data-->
+                                                    <td>9 AM</td> <!--Dummy data-->
+                                                    <td align="right"><a href="">VIEW REPORT</a></td> <!--Dummy data-->
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Content -->
+                    <div class="tab-content" id="account" style="display:none">
+                        <!-- Heading -->
+                        <div class="tab-item-heading">
+                            <h4>Account Info</h4>
+                        </div>
+                        <div class="tab-item-content">
+                            <table class="account-info-table">
+                                <tr class="table-row">
+                                    <td>Account Type:</td>
+                                    <td>Professor</td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td>Name:</td>
+                                    <td>Ashraf Saad</td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td>Professor ID:</td>
+                                    <td>901000000</td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td>Email Address:</td>
+                                    <td>asaad@georgiasouthern.edu</td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td>Phone:</td>
+                                    <td>912-000-0000</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- All Javascripts -->
+        <script type="text/javascript">
+            // Open tab content function
+            function openTab(event, tabItemId) {
+                var i, tabcontent, tabitem;
+                tabcontent = document.getElementsByClassName("tab-content");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tabitem = document.getElementsByClassName("tab-item");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabitem[i].className = tabitem[i].className.replace(" active", "");
+                }
+                document.getElementById(tabItemId).style.display = "block";
+                event.currentTarget.className += " active";
+
+                var dropdownBtn = document.getElementsByClassName("dropdown-btn");
+                var dropdownContainer = document.getElementById("dropdownContainer");
+                if (dropdownBtn.className === "active") {
+
+                    dropdownContainer.style.display = "flex";
+                    // event.currentTarget.className += " active";
+                } //else {
+                  //  dropdownContainer.style.display = "none";
+               // }
+            }
+
+            // Drop down menu script
+            /* When the user clicks on the button, toggle between hiding and showing the dropdown content */
+            function openDropdown() {
+                document.getElementById("dropdown-content").classList.toggle("show");
+            }
+
+            // Close the dropdown menu if the user clicks outside of it
+            window.onclick = function (event) {
+                if (!event.target.matches('.dropdown-btn')) {
+                    var dropdowns = document.getElementsByClassName("dropdown-container");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
+                    }
+                }
+            }
+
+            // Open class page as a modal
+            function openClassModal(classId) {
+                var classId = document.getElementById(classId);
+                classId.style.display = "block";
+            }
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    </body>
+
+</html>
