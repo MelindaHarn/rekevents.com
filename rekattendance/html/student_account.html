@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Student Account</title>
+        <!-- All CSS -->
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+        <link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/css/main.css">
+        <link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/css/student_account.css">
+
+        <!-- Javascript (Ajax, jQuery, bootstrap, webcam) -->
+        <script src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/js/jquery-3.1.0.js"></script>
+        <script type="text/javascript"
+            src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/webcam.min.js"></script>
+        <!-- <script src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/js/bootstrap.min.js"></script> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ 
+ 
+<!-- AngularJS -->
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.js"></script>
+ 
+ 
+        <!-- AWS -->
+        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.12.min.js"></script>
+        <script src="https://js.arcgis.com/4.3/"></script>
+        <script src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/js/config.js"></script>
+        <script src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/js/cognito-auth.js"></script>
+        <script src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/js/amazon-cognito-identity.min.js"></script>
+        <script src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/js/aws-cognito-sdk.min.js"></script>
+
+
+        <!-- Internal CSS -->
+        <style type="text/css">
+
+        </style>
+    </head>
+
+     <body>
+        <div class="content">
+            <!-- Nav bar -->
+            <nav class="navbar navbar-expand-lg">
+                <a href="#" class="navbar-brand"><img
+                        src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/images/rekevents_logo.svg"
+                        alt="rekevents logo"></a>
+                <div class="menu">
+                    <a href="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/wildrydes/index.html"><input
+                            type="button" name="logout" value="logout"></a>
+                </div>
+            </nav>
+            <!-- Tab Section -->
+            <section class="tab-section">
+                <!-- Tab side navbar -->
+                <div class="side-nav">
+                    <div class="user-name">
+                        <span><img src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/images/user.svg"
+                                alt="user symbol"></span>
+                        <h5>Student's Name</h5>
+                    </div>
+                    <ul class="tab-nav">
+                        <li>
+                            <button class="tab-item active" onclick="openTab(event, 'overview')">
+                                <img class="icons"
+                                    src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/images/overview.svg"
+                                    alt="">
+                                <p>Overview</p>
+                            </button>
+                        </li>
+                        <li class="dropdown" id="dropdown">
+                            <button id="dropdown-btn" class="tab-item dropdown-btn"
+                                onclick="openDropdown(); openTab(event, 'classes')">
+                                <img class="icons"
+                                    src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/images/class.svg"
+                                    alt="">
+                                <p>Classes</p><i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-container" id="dropdown-content">
+                                <a class="class-link" href="#" onclick="openClassModal('classId')">Class 1</a>
+                            </div>
+                        </li>
+                        <li>
+                            <button class="tab-item" onclick="openTab(event, 'account')">
+                                <img class="icons"
+                                    src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/images/account-info.svg"
+                                    alt="">
+                                <p>Account Info</p>
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="bottom-logo">
+                        <img src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/images/bottom-logo.svg"
+                            alt="">
+                    </div>
+                </div>
+                <!-- Tab Content -->
+                <div class="tab-content-container">
+
+                    <!-- Content -->
+                    <div class="tab-content" id="overview">
+                        <!-- Heading -->
+                        <div class="tab-item-heading">
+                            <h4>Overview</h4>
+                        </div>
+                        <div class="tab-item-content">
+                            <div class="course-grid-container">
+                                <div class="course-grid-item">
+                                    <div class="class-number">
+                                        <a href="#">
+                                            <h5>IT 4531</h5>
+                                        </a>
+                                    </div>
+                                    <div class="class-info">
+                                        <p class="info-label">Number of Students</p>
+                                        <p class="info">20</p>
+                                        <p class="info-label">Last Report Run</p>
+                                        <p class="info">01/01/2019</p>
+                                        <p class="info-label">Number of Absences</p>
+                                        <p class="info">2</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="classes" style="display:none">
+                        <!-- Heading -->
+                        <div class="tab-item-heading">
+                            <h4>Classes</h4>
+                        </div>
+                        <!-- Content -->
+                        <div class="tab-item-content">
+                            <!-- Grid container -->
+                            <div class="course-tile-grid">
+                                <!-- Grid child -->
+                                <a href="#" onclick="openClassModal('classId')">
+                                    <div class="course-tile-item">
+                                        <div class="course-image-holder">
+                                            <img src="https://source.unsplash.com/collection/590961" alt=""
+                                                class="course-image">
+                                        </div>
+                                        <div class="course-info">
+                                            <table class="class-tile-table">
+                                                <tr>
+                                                    <td colspan="4">
+                                                        IT-4531 Senior Cap
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Start:</td>
+                                                    <td>01/14/2019</td>
+                                                    <td>End:</td>
+                                                    <td>01/14/2019</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- This is for individual class page within the tab section "Classes" -->
+                        <div class="w3-modal" id="classId">
+                            <div class="w3-modal-content w3-animate-left">
+                                <span onclick="document.getElementById('classId').style.display='none'"
+                                    class="w3-button w3-display-topright">&times;</span>
+                                <div class="w3-container">
+                                    <div class="classinfo">
+                                        <h5>IT-4531 Senior Capstone Project II</h5>
+                                        <div class="date-hour">
+                                            <p><label>Date:</label>&nbsp;MW</p>
+                                            <p><label>Hour:</label>&nbsp;11 - 12:15 PM</p>
+                                        </div>
+                                    </div>
+                                    <div class="run-btn">
+                                       <input type="submit" class="button" value="Run Attendance" onclick="window.location.href = 'https://rekevents.com/rekattendance/html/attendance_check-in_application.html';">
+                                    </div>
+                                </div>
+                                <div class="w3-container">
+                                    <div class="grid-container">
+                                        <div class="grid-item">
+                                            <table class="student-list">
+                                                <tr class="list-heading">
+                                                    <th colspan="2">Class Roster</th>
+                                                </tr>
+                                                <tr class="list-subheading">
+                                                    <td>Student Name</td>
+                                                    <td>Student ID</td>
+                                                </tr>
+                                                <tr class="student">
+                                                    <td class="student-name">Toan Nguyen</td>
+                                                    <td class="student-id">900000000</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="grid-item">
+                                            <!-- <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;mode=WEEK&amp;height=600&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=6i7u4rshcpa9r7rh19kn6c6o4c%40group.calendar.google.com&amp;color=%238D6F47&amp;ctz=America%2FNew_York"
+                                                style="border:solid 1px #777" width="100%" height="450px" frameborder="0"
+                                                scrolling="no"></iframe> -->
+                                            <table class="report-table">
+                                                <tr class="list-heading">
+                                                    <th colspan="3">Class Attendance Reports</th>
+                                                </tr>
+                                                <tr class="list-subheading">
+                                                    <td align="left" width="30%">Date</td>
+                                                    <td align="left">Time</td>
+                                                    <td align="right">Report Link</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>01/14/2019</td>
+                                                    <!--Dummy data-->
+                                                    <td>9 AM</td>
+                                                    <!--Dummy data-->
+                                                    <td align="right"><a href="">VIEW REPORT</a></td>
+                                                    <!--Dummy data-->
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Content -->
+                    <div class="tab-content" id="account" style="display:none">
+                        <!-- Heading -->
+                        <div class="tab-item-heading">
+                            <h4>Account Info</h4>
+                        </div>
+                        <div class="info-container">
+                            <div class="tab-item-content">
+                                <table class="account-info-table">
+                                    <tr class="table-row">
+                                        <td>Account Type:</td>
+                                        <td>Student</td>
+                                    </tr>
+                                    <tr class="table-row">
+                                        <td>Name:</td>
+                                        <td>Toan Nguyen</td>
+                                    </tr>
+                                    <tr class="table-row">
+                                        <td>Student ID:</td>
+                                        <td>904000000</td>
+                                    </tr>
+                                    <tr class="table-row">
+                                        <td>Email Address:</td>
+                                        <td>tn04662@georgiasouthern.edu</td>
+                                    </tr>
+                                    <tr class="table-row">
+                                        <td>Phone:</td>
+                                        <td>912-000-0000</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <fieldset class="formfield">
+                                <legend>Image Upload</legend>
+                                <div class="fieldset-content">
+                                    <div class="camera-upload" ng-app="myapp" ng-controller="mainController">
+                                        <div class="title">
+                                            <p>Use the camera to take a photo of your face</p>
+                                        </div>
+                                        <!-- If there is an error and the webcam is unreachable, tells the user -->
+                                        <div class="photo-taker">
+                                            <div id="camera">
+                                                <div class="alert alert-error ng-scope" ng-show="webcamError">
+                                                    <span>Webcam could not be started. Did you give access to it?</span>
+                                                </div>
+                                                <webcam channel="channel" on-streaming="onSuccess()"
+                                                    on-error="onError(err)" on-stream="onStream(stream)"></webcam>
+                                                <button class="upload-btn" ng-click="makeSnapshot()">Take Photo</button>
+                                            </div>
+
+                                            <!-- creates the capture picture buttons and and save link -->
+                                            <div id="preview">
+                                                <canvas id="snapshot">
+                                                </canvas>
+                                                <button class="upload-btn" id='save'>Save Photo</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="image-upload">
+                                        <div class="title">
+                                            <p>Please submit a photo which will be used to verify your attendance.</p>
+                                        </div>
+                                        <div class="upload-content">
+
+                                            <div id="preview-upload">
+                                                <img id="placeholder" src="" alt="Image preview...">
+                                                <!--The <input> element below this line is the text box for the user to enter their name-->
+
+                                                <input type="file" class="form-control-file" id="file-chooser"
+                                                    onchange="previewFile()">
+
+                                                <p>Please enter your student username below</p>
+
+                                                <input type="text" id="userInput" pattern="[a-z0-9]+" maxlength="7"
+                                                    placeholder="(e.g. ex01234)"
+                                                    title="Please enter the correct student username (e.g. ex01234)"
+                                                    required>
+
+                                                <button class="upload-btn" id="upload-button"
+                                                    onclick="addPhoto()">Submit
+                                                    Photo</button>
+                                                <div id="results"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <!-- Webcam/Camera for Snapshot and Upload -->
+
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </section>
+        </div>
+        <!-- All Javascripts -->
+        <script type="text/javascript">
+            // Open tab content function
+            function openTab(event, tabItemId) {
+                var i, tabcontent, tabitem;
+
+
+                tabcontent = document.getElementsByClassName("tab-content");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tabitem = document.getElementsByClassName("tab-item");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabitem[i].className = tabitem[i].className.replace(" active", "");
+                }
+                document.getElementById(tabItemId).style.display = "block";
+                event.currentTarget.className += " active";
+
+                var dropdownBtn = document.getElementsByClassName("dropdown-btn");
+                var dropdownContainer = document.getElementById("dropdownContainer");
+                if (dropdownBtn.className === "active") {
+
+                    dropdownContainer.style.display = "flex";
+                    // event.currentTarget.className += " active";
+                } else {
+                    dropdownContainer.style.display = "none";
+                }
+            }
+
+            // Drop down menu script
+            /* When the user clicks on the button, toggle between hiding and showing the dropdown content */
+            function openDropdown() {
+                document.getElementById("dropdown-content").classList.toggle("show");
+            }
+
+            // Close the dropdown menu if the user clicks outside of it
+            window.onclick = function (event) {
+                if (!event.target.matches('.dropdown-btn')) {
+                    var dropdowns = document.getElementsByClassName("dropdown-container");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
+                    }
+                }
+            }
+
+            // Open class page as a modal
+            function openClassModal(classId) {
+                var classId = document.getElementById(classId);
+                classId.style.display = "block";
+            }
+        </script>
+
+        <!-- Begins the js needed to upload to the bucket-->
+        <script type="text/javascript">
+          // Establishes the credentials that link to the bucket
+            AWS.config.region = 'us-east-1';
+
+            AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+                IdentityPoolId: 'us-east-1:1c86b8e0-9738-4626-875f-a17cc00ba630',
+            });
+
+            AWS.config.credentials.get(function (err) {
+                if (err) alert(err);
+                console.log(AWS.config.credentials);
+            });
+ 
+            var bucketName = 'rekeventsinitialuserupload';
+
+
+            var s3 = new AWS.S3({
+              apiVersion: '2006-03-01',
+              params: {Bucket: bucketName, 
+                Metadata: {
+                'Content-Type': 'image/jpeg',
+  },}
+});
+
+s3.upload(params, function(err, data) {
+  console.log(err, data);
+});			
+			
+
+            function addPhoto(albumName) {
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+
+                today = mm + '' + dd + '' + yyyy;
+
+                albumName = today.trim();
+                var files = document.getElementById('file-chooser').files;
+                if (!files.length) {
+                    return alert('Please choose a file to upload first.');
+                }
+                var file = files[0];
+                //var fileName = file.name;
+				var filePreName = document.getElementById("userInput");
+				var fileName = filePreName.value;
+				var albumPhotosKey = encodeURIComponent(albumName);
+				var extention = '.jpeg';
+				
+				//photoKey = date + userName + .jpeg
+                var photoKey = fileName + extention;
+				
+
+                s3.upload({
+                    Key: photoKey,
+                    Body: file,
+                    ACL: 'public-read'
+                }, function (err, data) {
+                    if (err) {
+                        return alert('There was an error uploading your photo: ', err.message);
+                    }
+                    //alert("\t\t\tThank you \t \n \t Your photo has been submitted\t");  
+					alert(fileName);
+					//alert('Successfully uploaded photo.');
+                    viewAlbum(albumName);
+                });
+            }
+
+            // The JS that connects with the submit button
+            var fileChooser = document.getElementById('file-chooser');
+            var button = document.getElementById('upload-button');
+            var results = document.getElementById('results');
+            button.addEventListener('click', function () {
+                var file = fileChooser.files[0];
+                if (file) {
+                    results.innerHTML = '';
+                    var objKey = 'testing/' + file.name;
+                    var params = {
+                        Key: objKey,
+                        ContentType: file.type,
+                        Body: file,
+                        ACL: 'public-read'
+
+                    }
+
+                    bucket.putObject(params, function (err, data) {
+                        if (err) {
+                            listObjs();
+                        } else {
+                            results.innerHTML = 'Upload successful';
+                        }
+                    });
+
+                    document.querySelector('#placeholder').src =
+                        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANkAAADoCAMAAABVRrFMAAAAJFBMVEXc3Nzx8fHr6+ve3t7u7u7i4uLz8/Pa2trl5eXo6Ojk5OTs7OzkBr85AAAC90lEQVR4nO3b7ZaqIABGYRFEsfu/31EzM6PCwsVbs5+f58xxuY9fyEhVAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABjYtrJNLrZqbemgha2d8bkYV8uUdcabnLzvSidN2pC3a2oLbemsQZc/bEgTOGo286k4l5ny19oB5+KUFkqHVe6QMGNc6bDqeshyHLzVNkqH2WVf6jyWxtIX2lLm8tynW6dXlmmDlB3uP5Y1wTlXh2bnBuXL+mFcO93FvdvXJl5mnZ8fTkOar/dsULvMbh6/e65B7TLnb8cjvk5/2EmX1XfjLN8nb1C5rNl2jZI3qFwWImHpB025zMUG/afUDQqX2UjXjiGKcFkTf09L3VHKDpdclrpB4bLfvc6icz7pU1HKZbGpVZ884Fcui5yOO8bEymXjQdsctvhuRofJymX2bkgcn6W33VDhtsMu5bJqO9qP3z7C+cD6k63WEeJlbbiej970kdOuWX5gcw2Klw1/HubfgroQ28V+dSXeziZol4071VZNF0If37/+9mxdX2vaZS+0/faJt6r46rLeb++dq1vMN5fFhszXjC8ui42YVw88+bKmNtOnHd12B238V4jL36uXLY9q7083g+H4O85qxCxedvMi41ff5ERn7EbLXKt22Wb2ypvL0/rxhwh++bfKZfdzxMMQqg7htL3br3/g8rRWLnvwUc+TrNFlQlK47ME94qW5RLgsci6muNwddcvs3Qt1onmEJVvW1o/2/JV5A7Jl9sWN4olzimzZ+5/Ozfd92bJ3u5ZXGdWyu3fKHc5bUC17+/4xmlpEy959Sp9bpieaaFnz0Zf60+unaFkw7gPTm4xo2acbq361bETZ4X75O+JLWvi5b7+XWaocC7VWb0CFww5cY1F8NdNB62JM+XUxHw2onih9mVU/vP5snNLxeZb7zFFm70fVx8l+1DSO2MjW+ZbmDieAztrcUbbl1M3eRRkHy/m/LHXEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgJL+ACHoI/ATUEaKAAAAAElFTkSuQmCC";
+                } else {
+                    results.innerHTML = 'Nothing to upload.';
+                }
+            }, false);
+
+            function listObjs() {
+                var prefix = 'testing';
+                bucket.listObjects({
+                    Prefix: prefix
+                }, function (err, data) {
+                    if (err) {
+                        results.innerHTML = 'ERROR: ' + err;
+                    } else {
+                        var objKeys = "";
+                        data.Contents.forEach(function (obj) {
+                            objKeys += obj.Key + "<br>";
+                        });
+                        results.innerHTML = objKeys;
+                    }
+                });
+            }
+        </script>
+
+
+        <!-- The JS that displays the uploaded file -->
+        <script>
+            function previewFile() {
+                var preview = document.querySelector('#placeholder'); //selects the query named img
+                var file = document.querySelector('input[type=file]').files[0]; //sames as here
+                var reader = new FileReader();
+
+                reader.onloadend = function () {
+                    preview.src = reader.result;
+                }
+
+                if (file) {
+                    reader.readAsDataURL(file); //reads the data as a URL
+                } else {
+                    preview.src =
+                        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANkAAADoCAMAAABVRrFMAAAAJFBMVEXc3Nzx8fHr6+ve3t7u7u7i4uLz8/Pa2trl5eXo6Ojk5OTs7OzkBr85AAAC90lEQVR4nO3b7ZaqIABGYRFEsfu/31EzM6PCwsVbs5+f58xxuY9fyEhVAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABjYtrJNLrZqbemgha2d8bkYV8uUdcabnLzvSidN2pC3a2oLbemsQZc/bEgTOGo286k4l5ny19oB5+KUFkqHVe6QMGNc6bDqeshyHLzVNkqH2WVf6jyWxtIX2lLm8tynW6dXlmmDlB3uP5Y1wTlXh2bnBuXL+mFcO93FvdvXJl5mnZ8fTkOar/dsULvMbh6/e65B7TLnb8cjvk5/2EmX1XfjLN8nb1C5rNl2jZI3qFwWImHpB025zMUG/afUDQqX2UjXjiGKcFkTf09L3VHKDpdclrpB4bLfvc6icz7pU1HKZbGpVZ884Fcui5yOO8bEymXjQdsctvhuRofJymX2bkgcn6W33VDhtsMu5bJqO9qP3z7C+cD6k63WEeJlbbiej970kdOuWX5gcw2Klw1/HubfgroQ28V+dSXeziZol4071VZNF0If37/+9mxdX2vaZS+0/faJt6r46rLeb++dq1vMN5fFhszXjC8ui42YVw88+bKmNtOnHd12B238V4jL36uXLY9q7083g+H4O85qxCxedvMi41ff5ERn7EbLXKt22Wb2ypvL0/rxhwh++bfKZfdzxMMQqg7htL3br3/g8rRWLnvwUc+TrNFlQlK47ME94qW5RLgsci6muNwddcvs3Qt1onmEJVvW1o/2/JV5A7Jl9sWN4olzimzZ+5/Ozfd92bJ3u5ZXGdWyu3fKHc5bUC17+/4xmlpEy959Sp9bpieaaFnz0Zf60+unaFkw7gPTm4xo2acbq361bETZ4X75O+JLWvi5b7+XWaocC7VWb0CFww5cY1F8NdNB62JM+XUxHw2onih9mVU/vP5snNLxeZb7zFFm70fVx8l+1DSO2MjW+ZbmDieAztrcUbbl1M3eRRkHy/m/LHXEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgJL+ACHoI/ATUEaKAAAAAElFTkSuQmCC";
+                }
+            }
+
+            previewFile(); //calls the function named previewFile()
+        </script>
+
+
+
+        <!-- begins the javascript to be used in the controller -->
+        <script type="text/javascript">
+            angular.module('myapp', ['webcam'])
+                .controller('mainController', function ($scope) {
+                    var _video = null,
+                        patData = null;
+
+
+
+                    // defines the $scope
+                    $scope.patOpts = {
+                        x: 0,
+                        y: 0,
+                        w: 300,
+                        h: 300
+                    };
+
+
+                    // Sets up the video channel and make sure it works
+                    $scope.channel = {};
+                    $scope.webcamError = false;
+                    $scope.onError = function (err) {
+                        $scope.$apply(
+                            function () {
+                                $scope.webcamError = err;
+                            }
+                        );
+                    };
+
+                    // If the video channel is successful this binds the camera data to the scope
+                    $scope.onSuccess = function () {
+                        _video = $scope.channel.video;
+                        $scope.$apply(function () {
+                            $scope.patOpts.w = _video.width;
+                            $scope.patOpts.h = _video.height;
+                        });
+                    };
+
+
+                    // If we wanted to edit the stream this is where to do it
+                    $scope.onStream = function (stream) {};
+
+
+                    // Binds and image from the camera stream to the scope
+                    $scope.makeSnapshot = function () {
+                        if (_video) {
+                            var patCanvas = document.querySelector('#snapshot');
+                            if (!patCanvas) return;
+
+                            patCanvas.width = _video.width;
+                            patCanvas.height = _video.height;
+                            var ctxPat = patCanvas.getContext('2d');
+
+                            var idata = getVideoData($scope.patOpts.x, $scope.patOpts.y, $scope.patOpts.w,
+                                $scope.patOpts.h);
+                            ctxPat.putImageData(idata, 0, 0);
+
+                            sendSnapshotToServer(patCanvas.toDataURL());
+
+                            patData = idata;
+
+                        }
+                    };
+
+
+
+                    /**
+                     * Redirect the browser to the URL given.
+                     * Used to download the image by passing a dataURL string
+                     */
+                    $scope.downloadSnapshot = function downloadSnapshot(dataURL) {
+                        window.location.href = dataURL;
+                    };
+
+
+                    // Creates the canvas that pops up when user clicks "Take Picture" 
+                    var getVideoData = function getVideoData(x, y, w, h) {
+                        var hiddenCanvas = document.createElement('canvas');
+                        hiddenCanvas.width = _video.width;
+                        hiddenCanvas.height = _video.height;
+                        var ctx = hiddenCanvas.getContext('2d');
+                        ctx.drawImage(_video, 0, 0, _video.width, _video.height);
+
+                        return ctx.getImageData(x, y, w, h);
+                    };
+                    // If we wanted to send it to a back tier this is where we would do it, but since we don't it simply adds the photo to the scope; which displays to the user
+                    var sendSnapshotToServer = function sendSnapshotToServer(imgBase64) {
+                        $scope.snapshotData = imgBase64;
+                    };
+
+
+                    // when #a is clicked, this runs the save function below
+                    $('#save').click(save);
+
+
+                    // saves the image as a blob
+                    function save(ev) {
+                        $('#snapshot')[0].toBlob((blob) => {
+                            let URLObj = window.URL || window.webkitURL;
+                            let a = document.createElement("a");
+                            a.href = URLObj.createObjectURL(blob);
+                            a.download = "AwesomeRekEventsUserPhoto.jpeg";
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                        });
+                    }
+                    // closes the controller
+                });
+        </script>
+        <script>
+            // tells the parent the height of the content
+            if (window.parent && window.parent.parent) {
+                window.parent.parent.postMessage(["resultsFrame", {
+                    height: document.body.getBoundingClientRect().height,
+                    slug: "qww6g0a6"
+                }], "*")
+            }
+        </script>
+
+       
+        <!-- Extra needed for functional webcam -->
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+        <script type="text/javascript" src="https://cdn.rawgit.com/jonashartmann/webcam-directive/master/dist/webcam.min.js"></script>
+
+        <script type="text/javascript" src="https://cdn.rawgit.com/jonashartmann/webcam-directive/master/dist/webcam.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    </body>
+
+</html>
