@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        
+        <!-- Javascript SDK-->
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+         <!--<       <script src="https://rekevents.com/rekattendance/js/cognito-auth.js"></script>
+script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
+        <script src="https://rekevents.com/rekattendance/js/amazon-cognito-identity.min.js"></script>
+        <script src="https://rekevents.com/rekattendance/js/config.js"></script>
+        <script src="https://rekevents.com/rekattendance/js/aws-cognito-sdk.min.js"></script>
+        -->
+        <!-- All CSS -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+        <!-- <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/style.css"> -->
+        <link rel="stylesheet" href="https://rekevents.com/rekattendance/css/main.css">
+        <style type="text/css">
+ 
+        </style>
+        <title>RekEvents</title>
+    </head>
+
+    <body>
+
+        <!-- HERO SECTION -->
+        <section class="section" id="hero-section">
+            <!-- Navigation -->
+            <nav class="navbar navbar-expand-lg">
+                <a href="#hero-section" class="navbar-brand"><img src="https://rekevents.com/rekattendance/images/rekevents_logo.svg" alt="rekevents logo"></a>
+                <div class="menu">
+                    <a href="#professor-login"><input type="button" name="login" value="login"></a>
+                    <a href="#signinForm"><input type="button" name="signup" value="signup"></a>
+                </div>
+            </nav>
+            <!-- Hero -->
+            <div class="hero-bg jumbotron jumbotron-fluid">
+                <div class="container">
+                    <div class="hero-text">
+                        <h4>Welcome to the</h4>
+                        <h1>REKEVENTS</h1>
+                        <h3>FACIAL RECOGNITION ATTENDANCE APP</h3>
+                        <h6>THE APPLICATION THAT AUTOMATES THE TRADITIONAL ATTENDANCE PROCESS</h6>
+                        <a href="#form-section"><input type="button" class="btn" value="GET STARTED"></a>
+                    </div>
+                    <div class="hero-graphic">
+                        <img src="https://rekevents.com/rekattendance/images/isometric-01.svg" alt="isometric graphic">
+                    </div>
+                </div>
+                <div class="graphic-container">
+                    <img src="https://rekevents.com/rekattendance/images/graphic 2.svg" alt="graphic 2" class="graphic" id="graphic1">
+                    <img src="https://rekevents.com/rekattendance/images/graphic 1.svg" alt="graphic 1" class="graphic" id="graphic2">
+                </div>
+            </div>
+        </section>
+
+        <!-- FORM SECTION -->
+        <section class="section" id="form-section">
+            <!-- Form Container -->
+            <div class="container">
+                <div class="grid-container">
+                    <!-- Professor Side -->
+                    <div class="grid-item">
+                        <h3 class="form-heading">PROFESSOR</h3>
+                        <!-- Tab links -->
+                        <div class="form-title">
+                            <button disabled>Log In</button>
+                            <!-- <button class="tablinks" onclick="openTabContent(event, 'professor-login')" id="defaultOpen1">Log
+                                In</button>
+                            <button class="tablinks" onclick="openTabContent(event, 'professor-signup')">Sign Up</button> -->
+                        </div>
+
+                        <!-- Tab content -->
+                        <!-- Professor Login Form -->
+                        <div class="professor-login" id="professor-login">
+                            <form action="#" method="POST">
+                                <div class="input-field">
+                                    <input type="email" name="p-email" id="p-email" placeholder="Professor email*" required="email">
+                                    <input class="button" type="submit" value="log in"></a>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Professor Signup Form
+                        <div class="tabcontent" id="professor-signup">
+                            <form action="#" method="POST">
+                                <div class="input-field">
+                                    <input type="email" name="email" id="email" placeholder="Professor email*" required="email">
+                                    <input class="button" type="submit" value="sign up">
+                                </div>
+                            </form>
+                        </div> -->
+                    </div>
+
+                    <!-- Student Side -->
+                    <div class="grid-item">
+                        <h3 class="form-heading">STUDENT</h3>
+                        <!-- Tab links -->
+                        <div class="tab2">
+                            <button class="tablinks2" onclick="openTabContent2(event, 'signinForm')" id="defaultOpen2">Log
+                                In</button>
+                            <button class="tablinks2" onclick="openTabContent2(event, 'registrationForm')">Sign Up</button>
+                        </div>
+
+						
+			
+<!-- Tab content -->
+<!-- Student Login Form -->
+<!-- Need  -->
+	<section class="form-wrap">
+		<h1>Sign In</h1>
+		<form id="signinFormStudent">
+			<div class="tabcontent2" id="signinForm">
+				<form action="#" method="POST">
+					<div class="input-field">
+						<input type="email" id="emailInputSignin" placeholder="Student email*" pattern="[^]+@[^]+[.][a-z]{2,63}$" autocomplete="email" required>
+						<input type="password" name="passwordInputRegisterStudent" id="passwordInputSignin" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+						<!-- <input type="password" id="password2InputRegisterStudent" placeholder="Confirm Password" pattern=".*" required>	-->
+						<input type="submit" value="Sign in">
+						<!--<input class="button" type="submit" value="log in">-->
+					</div>
+				</form>
+			</div>
+		</form>
+
+						
+						
+						
+						
+						
+						
+<!-- Student Signup Form -->
+	
+		<h1>Register</h1>
+		<form id="registrationFormStudent">
+			<div class="tabcontent2" id="registrationForm">
+				<form action="#" method="POST">
+					<div class="input-field">
+						<input type="email" class="form-control" name="emailInputRegisterStudent" id="studentSignupEmail" placeholder="Student email*" pattern="[^]+@[^]+[.][a-z]{2,63}$" autocomplete="email" required>
+						<input type="password" class="form-control" name="passwordInputRegisterStudent" id="studentSignupPassword" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+						<label id="showPasswordLabel" for="showPassword">
+							<i class="fas fa-eye"></i> Show Password
+						</label>
+						<input type="checkbox" id="showPassword" onclick="showPass()">
+						<input type="password" id="password2InputRegisterStudent" placeholder="Confirm Password" pattern=".*" required>
+						<input type="submit" value="Register">
+					</div>
+				</form>
+			</div>
+		</form>
+	</section>
+</div>		
+		
+		
+		
+		
+		
+		
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-content">
+                <img id="footer-logo" src="https://rekevents.com/rekattendance/images/REKEVENTS.svg" alt="RekEvents Footer Logo">
+                <div class="footer-text">
+                    <a href="#">Terms and Conditions</a>
+                    <a href="#">Private Policy</a>
+                    <p id="copyright">&copy; 2019 Rekevents.com. All Rights Reserved</p>
+                </div>
+            </div>
+        </footer>
+        <!-- All External JavaScripts -->
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+		
+		<script src="https://s3.amazonaws.com/rekeventswildrydes1/js/vendor/jquery-3.1.0.js"></script>
+        <script src="https://s3.amazonaws.com/rekeventswildrydes1/js/vendor/bootstrap.min.js"></script>
+        <script src="https://s3.amazonaws.com/rekeventswildrydes1/js/vendor/aws-cognito-sdk.min.js"></script>
+        <script src="https://s3.amazonaws.com/rekeventswildrydes1/js/vendor/amazon-cognito-identity.min.js"></script>
+        <script src="https://s3.amazonaws.com/rekeventswildrydes1/js/config.js"></script>
+        <script src="https://s3.amazonaws.com/rekeventswildrydes1/js/cognito-auth.js"></script>
+		
+		
+		
+        <!-- Internal JavaScripts -->
+        <script type="text/javascript">
+            // Tab function for Student side
+            function openTabContent2(event, formType) {
+                // Declare variables
+                var i, tabcontent, tablinks;
+
+                // Hide all the elements of the class "tabcontent"
+                tabcontent = document.getElementsByClassName("tabcontent2");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+
+                // Remove the class "active" from elements that have the class "tablinks"
+                tablinks = document.getElementsByClassName("tablinks2");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+
+                // Show the current tab content and add the "active" class to that opened tab
+                document.getElementById(formType).style.display = "block";
+                event.currentTarget.className += " active";
+            }
+
+            // Default open tab
+            // document.getElementById("defaultOpen1").click();
+            document.getElementById("defaultOpen2").click();
+
+            // Smooth Scrolling
+            // Select all links with hashes
+            $('a[href*="#"]')
+                // Remove links that don't actually link to anything
+                .not('[href="#"]')
+                .not('[href="#0"]')
+                .click(function (event) {
+                    // On-page links
+                    if (
+                        location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') &&
+                        location.hostname == this.hostname
+                    ) {
+                        // Figure out element to scroll to
+                        var target = $(this.hash);
+                        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                        // Does a scroll target exist?
+                        if (target.length) {
+                            // Only prevent default if animation is actually gonna happen
+                            event.preventDefault();
+                            $('html, body').animate({
+                                scrollTop: target.offset().top
+                            }, 1000, function () {
+                                // Callback after animation
+                                // Must change focus!
+                                var $target = $(target);
+                                $target.focus();
+                                if ($target.is(":focus")) { // Checking if the target was focused
+                                    return false;
+                                } else {
+                                    $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+                                    $target.focus(); // Set focus again
+                                };
+                            });
+                        }
+                    }
+                });
+
+            // Show/Hide Password
+            function showPass() {
+                var password = document.getElementById("studentSignupPassword");
+                if (password.type === "password") {
+                    password.type = "text";
+                } else {
+                    password.type = "password";
+                }
+
+            }
+        </script>
+    </body>
+
+</html>
