@@ -1,0 +1,663 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Attendance Check Application</title>
+
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Attendance Check Application</title>
+        <!-- All CSS -->
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+        <link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/css/main.css">
+        <link rel="stylesheet"
+            href="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/css/student_account.css">
+        <link rel="stylesheet"
+            href="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/css/pro_credential_verify.css">
+
+        <!-- Javascript (Ajax, jQuery, bootstrap, webcam) -->
+        <script src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/js/vendor/jquery-3.1.0.js"></script>
+        <script type="text/javascript"
+            src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/webcam.min.js"></script>
+        <!-- <script src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/js/vendor/bootstrap.min.js"></script> -->
+        <!-- <script src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/js/vendor/bootstrap.min.js"></script> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+
+
+        <!-- AngularJS -->
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.js"></script>
+
+        <!-- AWS -->
+        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.12.min.js"></script>
+        <script src="https://js.arcgis.com/4.3/"></script>
+        <script src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/js/config.js"></script>
+        <script src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/js/cognito-auth.js"></script>
+        <script
+            src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/js/vendor/amazon-cognito-identity.min.js"></script>
+        <script
+            src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/js/vendor/aws-cognito-sdk.min.js"></script>
+
+
+        <!-- Internal CSS -->
+        <style type="text/css">
+            body {
+                width: 100%;
+                height: 100%;
+                font-size: 1em;
+            }
+
+            .background {
+                position: static;
+                height: auto;
+                min-height: 0;
+            }
+
+            .form-background {
+                width: 80%;
+                height: auto;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                margin: 400px 0 100px 0;
+            }
+
+            .camera-upload {
+                width: 100%;
+                margin: 0;
+            }
+
+            .camera-upload div {
+                width: 100%;
+            }
+
+            .camera-upload div * {
+                width: 100%;
+            }
+
+            .content {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+            }
+
+            #camera {
+                margin-right: 20px;
+                width: 50%;
+            }
+
+            #preview {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                margin-left: 20px;
+            }
+
+            #preview canvas,
+            .webcam-live {
+                width: 100%;
+                height: 100%;
+            }
+
+            .webcam,
+            .webcam-live,
+            #snapshot {
+
+                height: auto;
+                max-height: 400px;
+            }
+
+            #snapshot,
+            .webcam {
+                margin-bottom: 25px;
+            }
+
+            .title {
+                text-align: center;
+                margin-bottom: 25px;
+                font-weight: 600;
+                font-size: 1.5em;
+                color: var(--main-third-color);
+            }
+
+            .title:not(:first-child) {
+                margin-top: 50px;
+            }
+
+            hr {
+                margin-top: 50px;
+                margin-bottom: 0;
+            }
+
+            .file-upload {
+                padding: 0 200px;
+            }
+
+            #photoupload {
+                outline: 1px solid black;
+                margin-bottom: 25px;
+            }
+
+            p:not(:first-child) {
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .graphic-holder {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                margin-top: 300px;
+            }
+
+            .data-table {
+                margin-top: 25px;
+                width: 100%;
+                background: var(--main-second-color);
+            }
+
+            #posts {
+                border: 1px solid var(--main-third-color);
+                width: 100%;
+            }
+
+            #posts tr th {
+                background: var(--main-third-color);
+                color: var(--main-second-color);
+                padding: 10px;
+                text-align: center;
+            }
+
+            #posts tr td {
+                padding: 10px;
+                border: 1px solid var(--main-third-color);
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="background">
+            <!-- Logo -->
+            <div class="container">
+                <img src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/images/rekevents_logo.svg"
+                    width="200" alt="" class="image">
+            </div>
+            <div class="form-background">
+                <!-- Webcam/Camera for Snapshot and Upload -->
+                <div class="camera-upload" ng-app="myapp" ng-controller="mainController">
+                    <div class="title">
+                        PHOTO TAKER
+                    </div>
+                    <p>Don't have a facial photo yet? Take a snapshot of your face and save it to your computer</br>
+                    Then use the uploader below to add the photo to the bucket</p>
+                    <!-- If there is an error and the webcam is unreachable, tells the user -->
+                    <div class="content">
+                        <div id="camera">
+                            <div class="alert alert-error ng-scope" ng-show="webcamError">
+                                <span>Webcam could not be started. Did you give access to it?</span>
+                            </div>
+                            <webcam channel="channel" on-streaming="onSuccess()" on-error="onError(err)"
+                                on-stream="onStream(stream)"></webcam>
+                            <button class="upload-btn" ng-click="makeSnapshot()">Take Snapshot</button>
+                        </div>
+
+                        <!-- creates the capture picture buttons and and save link -->
+                        <div id="preview">
+                            <canvas id="snapshot"></canvas>
+                            <button class="upload-btn" id='save'>Save Image</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="title">
+                        PHOTO UPLOADER
+                    </div>
+                    <p>Already have a photo available? Use the uploader to add it to the bucket</p>
+                    <div class="file-upload">
+                        <input id="photoupload" type="file" accept="image/*">
+                        <button id="addphoto" class="upload-btn" onclick="addPhoto()">
+                            Add Photo To Bucket
+                        </button>
+                    </div>
+                    <hr>
+                </div>
+
+
+
+                <div class="data-table">
+                    <div class="title">
+                        ATTENDANCE TABLE
+                    </div>
+                    <!--Need this div to query the db -->
+                    <div id="content">
+                        <input type="hidden" id="voiceSelected">
+                        <option value="Joanna"></option></select>
+                        <input type="hidden" value="Save!" id="sayButton" class="buttons">
+                        <input type="hidden" id="postId" value="*">
+                        <input type="hidden" class="buttons" value="Search" id="searchButton">
+                    </div>
+
+                    <!--table that presents the attendance data -->
+                    <table id="posts">
+                        <tbody>
+                            <tr>
+                                <th>Student</th>
+                                <th>Attendance Status</th>
+                                <th>Face-Match Percentage</th>
+                                <th>Date</th>
+                            </tr>
+                        </tbody>
+                    </table>
+					<button onClick="beginTheCSVExport()">Export HTML table to CSV file</button>
+					<!--<button>Export HTML table to CSV file</button>-->
+                </div>
+
+            </div>
+
+            <!-- Background graphics -->
+            <div class="graphic-holder">
+                <img src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/images/graphic 2.svg" alt=""
+                    class="image2">
+                <img src="https://s3.us-east-2.amazonaws.com/rekevents.com/rekattendance/images/graphic 1.svg" alt=""
+                    class="image1">
+            </div>
+        </div>
+
+
+
+
+        <!-- All Javascripts -->
+        <script type="text/javascript">
+            // Open tab content function
+            function openTab(event, tabItemId) {
+                var i, tabcontent, tabitem;
+
+
+                tabcontent = document.getElementsByClassName("tab-content");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tabitem = document.getElementsByClassName("tab-item");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabitem[i].className = tabitem[i].className.replace(" active", "");
+                }
+                document.getElementById(tabItemId).style.display = "block";
+                event.currentTarget.className += " active";
+
+                var dropdownBtn = document.getElementsByClassName("dropdown-btn");
+                var dropdownContainer = document.getElementById("dropdownContainer");
+                if (dropdownBtn.className === "active") {
+
+                    dropdownContainer.style.display = "flex";
+                    // event.currentTarget.className += " active";
+                } else {
+                    dropdownContainer.style.display = "none";
+                }
+            }
+
+            // Drop down menu script
+            /* When the user clicks on the button, toggle between hiding and showing the dropdown content */
+            function openDropdown() {
+                document.getElementById("dropdown-content").classList.toggle("show");
+            }
+
+            // Close the dropdown menu if the user clicks outside of it
+            window.onclick = function (event) {
+                if (!event.target.matches('.dropdown-btn')) {
+                    var dropdowns = document.getElementsByClassName("dropdown-container");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
+                    }
+                }
+            }
+
+            // Open class page as a modal
+            function openClassModal(classId) {
+                var classId = document.getElementById(classId);
+                classId.style.display = "block";
+            }
+        </script>
+
+        <!-- Begins the js needed to upload to the bucket-->
+        <script type="text/javascript">
+            // Establishes the credentials that link to the bucket
+            AWS.config.region = 'us-east-1';
+
+            AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+                IdentityPoolId: 'us-east-1:21b6849d-f5ab-466d-adce-8daec9b76b16',
+            });
+
+            AWS.config.credentials.get(function (err) {
+                if (err) alert(err);
+                console.log(AWS.config.credentials);
+            });
+
+            var bucketName = 'rekeventsattendanceapplicationimageuploader2';
+
+
+            var s3 = new AWS.S3({
+                apiVersion: '2006-03-01',
+                params: {
+                    Bucket: bucketName,
+                    Metadata: {
+                        'Content-Type': 'image/jpeg',
+                    },
+                }
+            });
+
+            s3.upload(params, function (err, data) {
+                console.log(err, data);
+            });
+
+
+            function addPhoto(albumName) {
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+
+                today = mm + '' + dd + '' + yyyy;
+
+                albumName = today.trim();
+                var files = document.getElementById('photoupload').files;
+                if (!files.length) {
+                    return alert('Please choose a file to upload first.');
+                }
+                var file = files[0];
+                var fileName = file.name;
+                var albumPhotosKey = encodeURIComponent(albumName);
+
+                var photoKey = albumPhotosKey + fileName;
+                s3.upload({
+                    Key: photoKey,
+                    Body: file,
+                    ACL: 'public-read'
+                }, function (err, data) {
+                    if (err) {
+                        return alert('There was an error uploading your photo: ', err.message);
+                    }
+                    alert('Successfully uploaded photo.');
+                    viewAlbum(albumName);
+                });
+            }
+            // The JS that connects with the submit button
+            var fileChooser = document.getElementById('file-chooser');
+            var button = document.getElementById('upload-button');
+            var results = document.getElementById('results');
+            button.addEventListener('click', function () {
+                var file = fileChooser.files[0];
+                if (file) {
+                    results.innerHTML = '';
+                    var objKey = 'testing/' + file.name;
+                    var params = {
+                        Key: objKey,
+                        ContentType: file.type,
+                        Body: file,
+                        ACL: 'public-read'
+
+                    }
+
+                    bucket.putObject(params, function (err, data) {
+                        if (err) {
+                            listObjs();
+                        } else {
+                            results.innerHTML = 'Upload successful';
+                        }
+                    });
+
+                    document.querySelector('#placeholder').src =
+                        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANkAAADoCAMAAABVRrFMAAAAJFBMVEXc3Nzx8fHr6+ve3t7u7u7i4uLz8/Pa2trl5eXo6Ojk5OTs7OzkBr85AAAC90lEQVR4nO3b7ZaqIABGYRFEsfu/31EzM6PCwsVbs5+f58xxuY9fyEhVAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABjYtrJNLrZqbemgha2d8bkYV8uUdcabnLzvSidN2pC3a2oLbemsQZc/bEgTOGo286k4l5ny19oB5+KUFkqHVe6QMGNc6bDqeshyHLzVNkqH2WVf6jyWxtIX2lLm8tynW6dXlmmDlB3uP5Y1wTlXh2bnBuXL+mFcO93FvdvXJl5mnZ8fTkOar/dsULvMbh6/e65B7TLnb8cjvk5/2EmX1XfjLN8nb1C5rNl2jZI3qFwWImHpB025zMUG/afUDQqX2UjXjiGKcFkTf09L3VHKDpdclrpB4bLfvc6icz7pU1HKZbGpVZ884Fcui5yOO8bEymXjQdsctvhuRofJymX2bkgcn6W33VDhtsMu5bJqO9qP3z7C+cD6k63WEeJlbbiej970kdOuWX5gcw2Klw1/HubfgroQ28V+dSXeziZol4071VZNF0If37/+9mxdX2vaZS+0/faJt6r46rLeb++dq1vMN5fFhszXjC8ui42YVw88+bKmNtOnHd12B238V4jL36uXLY9q7083g+H4O85qxCxedvMi41ff5ERn7EbLXKt22Wb2ypvL0/rxhwh++bfKZfdzxMMQqg7htL3br3/g8rRWLnvwUc+TrNFlQlK47ME94qW5RLgsci6muNwddcvs3Qt1onmEJVvW1o/2/JV5A7Jl9sWN4olzimzZ+5/Ozfd92bJ3u5ZXGdWyu3fKHc5bUC17+/4xmlpEy959Sp9bpieaaFnz0Zf60+unaFkw7gPTm4xo2acbq361bETZ4X75O+JLWvi5b7+XWaocC7VWb0CFww5cY1F8NdNB62JM+XUxHw2onih9mVU/vP5snNLxeZb7zFFm70fVx8l+1DSO2MjW+ZbmDieAztrcUbbl1M3eRRkHy/m/LHXEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgJL+ACHoI/ATUEaKAAAAAElFTkSuQmCC";
+                } else {
+                    results.innerHTML = 'Nothing to upload.';
+                }
+            }, false);
+
+            function listObjs() {
+                var prefix = 'testing';
+                bucket.listObjects({
+                    Prefix: prefix
+                }, function (err, data) {
+                    if (err) {
+                        results.innerHTML = 'ERROR: ' + err;
+                    } else {
+                        var objKeys = "";
+                        data.Contents.forEach(function (obj) {
+                            objKeys += obj.Key + "<br>";
+                        });
+                        results.innerHTML = objKeys;
+                    }
+                });
+            }
+        </script>
+
+        <!-- The JS that displays the uploaded file -->
+        <script>
+            function previewFile() {
+                var preview = document.querySelector('#placeholder'); //selects the query named img
+                var file = document.querySelector('input[type=file]').files[0]; //sames as here
+                var reader = new FileReader();
+
+                reader.onloadend = function () {
+                    preview.src = reader.result;
+                }
+
+                if (file) {
+                    reader.readAsDataURL(file); //reads the data as a URL
+                } else {
+                    preview.src =
+                        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANkAAADoCAMAAABVRrFMAAAAJFBMVEXc3Nzx8fHr6+ve3t7u7u7i4uLz8/Pa2trl5eXo6Ojk5OTs7OzkBr85AAAC90lEQVR4nO3b7ZaqIABGYRFEsfu/31EzM6PCwsVbs5+f58xxuY9fyEhVAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABjYtrJNLrZqbemgha2d8bkYV8uUdcabnLzvSidN2pC3a2oLbemsQZc/bEgTOGo286k4l5ny19oB5+KUFkqHVe6QMGNc6bDqeshyHLzVNkqH2WVf6jyWxtIX2lLm8tynW6dXlmmDlB3uP5Y1wTlXh2bnBuXL+mFcO93FvdvXJl5mnZ8fTkOar/dsULvMbh6/e65B7TLnb8cjvk5/2EmX1XfjLN8nb1C5rNl2jZI3qFwWImHpB025zMUG/afUDQqX2UjXjiGKcFkTf09L3VHKDpdclrpB4bLfvc6icz7pU1HKZbGpVZ884Fcui5yOO8bEymXjQdsctvhuRofJymX2bkgcn6W33VDhtsMu5bJqO9qP3z7C+cD6k63WEeJlbbiej970kdOuWX5gcw2Klw1/HubfgroQ28V+dSXeziZol4071VZNF0If37/+9mxdX2vaZS+0/faJt6r46rLeb++dq1vMN5fFhszXjC8ui42YVw88+bKmNtOnHd12B238V4jL36uXLY9q7083g+H4O85qxCxedvMi41ff5ERn7EbLXKt22Wb2ypvL0/rxhwh++bfKZfdzxMMQqg7htL3br3/g8rRWLnvwUc+TrNFlQlK47ME94qW5RLgsci6muNwddcvs3Qt1onmEJVvW1o/2/JV5A7Jl9sWN4olzimzZ+5/Ozfd92bJ3u5ZXGdWyu3fKHc5bUC17+/4xmlpEy959Sp9bpieaaFnz0Zf60+unaFkw7gPTm4xo2acbq361bETZ4X75O+JLWvi5b7+XWaocC7VWb0CFww5cY1F8NdNB62JM+XUxHw2onih9mVU/vP5snNLxeZb7zFFm70fVx8l+1DSO2MjW+ZbmDieAztrcUbbl1M3eRRkHy/m/LHXEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgJL+ACHoI/ATUEaKAAAAAElFTkSuQmCC";
+                }
+            }
+
+            previewFile(); //calls the function named previewFile()
+        </script>
+
+        <!-- begins the javascript to be used in the controller -->
+        <script type="text/javascript">
+            angular.module('myapp', ['webcam'])
+                .controller('mainController', function ($scope) {
+                    var _video = null,
+                        patData = null;
+
+
+
+                    // defines the $scope
+                    $scope.patOpts = {
+                        x: 0,
+                        y: 0,
+                        w: 300,
+                        h: 300
+                    };
+
+
+                    // Sets up the video channel and make sure it works
+                    $scope.channel = {};
+                    $scope.webcamError = false;
+                    $scope.onError = function (err) {
+                        $scope.$apply(
+                            function () {
+                                $scope.webcamError = err;
+                            }
+                        );
+                    };
+
+                    // If the video channel is successful this binds the camera data to the scope
+                    $scope.onSuccess = function () {
+                        _video = $scope.channel.video;
+                        $scope.$apply(function () {
+                            $scope.patOpts.w = _video.width;
+                            $scope.patOpts.h = _video.height;
+                        });
+                    };
+
+
+                    // If we wanted to edit the stream this is where to do it
+                    $scope.onStream = function (stream) { };
+
+
+                    // Binds and image from the camera stream to the scope
+                    $scope.makeSnapshot = function () {
+                        if (_video) {
+                            var patCanvas = document.querySelector('#snapshot');
+                            if (!patCanvas) return;
+
+                            patCanvas.width = _video.width;
+                            patCanvas.height = _video.height;
+                            var ctxPat = patCanvas.getContext('2d');
+
+                            var idata = getVideoData($scope.patOpts.x, $scope.patOpts.y, $scope.patOpts.w,
+                                $scope.patOpts.h);
+                            ctxPat.putImageData(idata, 0, 0);
+
+                            sendSnapshotToServer(patCanvas.toDataURL());
+
+                            patData = idata;
+
+                        }
+                    };
+
+
+
+                    /**
+                     * Redirect the browser to the URL given.
+                     * Used to download the image by passing a dataURL string
+                     */
+                    $scope.downloadSnapshot = function downloadSnapshot(dataURL) {
+                        window.location.href = dataURL;
+                    };
+
+
+                    // Creates the canvas that pops up when user clicks "Take Picture" 
+                    var getVideoData = function getVideoData(x, y, w, h) {
+                        var hiddenCanvas = document.createElement('canvas');
+                        hiddenCanvas.width = _video.width;
+                        hiddenCanvas.height = _video.height;
+                        var ctx = hiddenCanvas.getContext('2d');
+                        ctx.drawImage(_video, 0, 0, _video.width, _video.height);
+
+                        return ctx.getImageData(x, y, w, h);
+                    };
+                    // If we wanted to send it to a back tier this is where we would do it, but since we don't it simply adds the photo to the scope; which displays to the user
+                    var sendSnapshotToServer = function sendSnapshotToServer(imgBase64) {
+                        $scope.snapshotData = imgBase64;
+                    };
+
+
+                    // when #a is clicked, this runs the save function below
+                    $('#save').click(save);
+
+
+                    // saves the image as a blob
+                    function save(ev) {
+                        $('#snapshot')[0].toBlob((blob) => {
+                            let URLObj = window.URL || window.webkitURL;
+                            let a = document.createElement("a");
+                            a.href = URLObj.createObjectURL(blob);
+                            a.download = "RekEventsUserPhoto.jpeg";
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                        });
+                    }
+                    // closes the controller
+                });
+        </script>
+
+        <script>
+            // tells the parent the height of the content
+            if (window.parent && window.parent.parent) {
+                window.parent.parent.postMessage(["resultsFrame", {
+                    height: document.body.getBoundingClientRect().height,
+                    slug: "qww6g0a6"
+                }], "*")
+            }
+        </script>
+<script>		
+		function download_csv(csv, filename) {
+    var csvFile;
+    var downloadLink;
+
+    // CSV FILE
+    csvFile = new Blob([csv], {type: "text/csv"});
+
+    // Download link
+    downloadLink = document.createElement("a");
+
+    // File name
+    downloadLink.download = filename;
+
+    // We have to create a link to the file
+    downloadLink.href = window.URL.createObjectURL(csvFile);
+
+    // Make sure that the link is not displayed
+    downloadLink.style.display = "none";
+
+    // Add the link to your DOM
+    document.body.appendChild(downloadLink);
+
+    // Lanzamos
+    downloadLink.click();
+}
+
+function export_table_to_csv(html, filename) {
+	var csv = [];
+	var rows = document.querySelectorAll("table tr");
+	
+    for (var i = 0; i < rows.length; i++) {
+		var row = [], cols = rows[i].querySelectorAll("td, th");
+		
+        for (var j = 0; j < cols.length; j++) 
+            row.push(cols[j].innerText);
+        
+		csv.push(row.join(","));		
+	}
+
+    // Download CSV
+    download_csv(csv.join("\n"), filename);
+}
+
+ function beginTheCSVExport() {
+    var html = document.getElementById("posts").outerHTML;
+	export_table_to_csv(html, "table.csv");
+}
+</script>
+
+        <!-- JS that runs the report table-->
+        <script src="https://rekevents.com/rekattendance/js/scripts2.js "></script>
+        <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+
+         Extra needed for functional webcam -->
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+        <script type="text/javascript"
+            src="https://cdn.rawgit.com/jonashartmann/webcam-directive/master/dist/webcam.min.js"></script>
+
+        <script type="text/javascript"
+            src="https://cdn.rawgit.com/jonashartmann/webcam-directive/master/dist/webcam.min.js"></script>
+
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    </body>
+
+</html> 
